@@ -14,13 +14,6 @@
     <script src="../../scripts/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../config/firebaseConfig.js"></script>
-    <script>
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (!user || user.role !== 'admin') {
-                window.location.href = './index.html'; // Asumsi ini adalah URL untuk halaman login
-            }
-        });
-    </script>
 </head>
 
 <body>

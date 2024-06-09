@@ -44,7 +44,7 @@ function login() {
         }
         if (userData.role === "admin") {
             console.log("User is admin"); // Debugging
-            window.location.href = '../views/dashboard';
+            window.location.href = '../../views/dashboard';
             return;
         } else if (userData.role === "user") {
             var now = new Date();
@@ -53,7 +53,7 @@ function login() {
                 throw new Error("Account has expired.");
             }
             console.log("User is regular user"); // Debugging
-            window.location.href = '../views/user';
+            window.location.href = '../../views/user';
             return;
         } else {
             throw new Error("Invalid user role.");

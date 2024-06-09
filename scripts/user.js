@@ -1,7 +1,7 @@
 // Definisikan fungsi logout di ruang lingkup global
 function logout() {
     firebase.auth().signOut().then(() => {
-        window.location.href = '/index.html';
+        window.location.href = '../../';
     }).catch((error) => {
         alert("Error : " + error.message);
     });

@@ -1,6 +1,6 @@
 function logout() {
     firebase.auth().signOut().then(() => {
-        window.location.href = '../';
+        window.location.href = '../index.html';
     }).catch((error) => {
         Swal.fire({
             icon: 'error',

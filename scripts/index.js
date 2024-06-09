@@ -44,7 +44,7 @@ function login() {
         }
         if (userData.role === "admin") {
             console.log("User is admin"); // Debugging
-            window.location.href = '/views/dashboard';
+            window.location.href = '/views/dashboard/index.html';
             return;
         } else if (userData.role === "user") {
             var now = new Date();

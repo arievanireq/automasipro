@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automasipro</title>
+    <link rel="shortcut icon" href="/assets/images/reqcode.png" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/styles/user.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="/config/firebaseConfig.js"></script>
+    <script src="/scripts/user.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user || user.role !== 'user') {
+                window.location.href = '/index.html'; // Asumsi ini adalah URL untuk halaman login
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="user_container">
+
+        <div class="header">
+            <h2>Automasipro</h2>
+            <div class="nav">
+                <a href="#beranda">Beranda</a>
+                <a href="#dashboard">Dashboard</a>
+                <button type="button" onclick="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+            </div>
+        </div>
+
+        <!-- Konten untuk Beranda -->
+        <div id="beranda" class="content-section">
+            <h3>Selamat Datang di Beranda</h3>
+            <p>Ini adalah halaman beranda dari Automasipro. Di sini Anda bisa melihat informasi umum dan berita terbaru
+                tentang aplikasi.</p>
+        </div>
+
+        <!-- Konten untuk Dashboard -->
+        <div id="dashboard" class="content-section" style="display: none;">
+            <div class="box_content_dashboard">
+                <div class="sidebar">
+                    <a href="#profile"><i class="fa fa-user"></i> Profile</a>
+                    <a href="#ubah_password"><i class="fa fa-lock"></i> Ubah Password</a>
+                </div>
+                <div class="content">
+                    <div id="profile" class="content_section">
+                        <h3 class="title_content">Profile</h3>
+                        <div class="box_profile">
+                            <div class="nama">
+                                <p>Nama</p>
+                                <p class="nama_profile"></p>
+                            </div>
+                            <div class="email">
+                                <p>Email</p>
+                                <p class="email_profile"></p>
+                            </div>
+                            <div class="telepon">
+                                <p>Nomor Telepon</p>
+                                <p class="telepon_profile"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ubah_password" class="content_section" style="display: none;">
+                        <h3 class="title_content">Ubah Password</h3>
+                        <form id="formUbahPassword">
+                            <div class="password_lama">
+                                <input type="password" id="passwordLama" placeholder="Masukkan Password Lama" required>
+                            </div>
+                            <div class="password_baru">
+                                <input type="password" id="passwordBaru" placeholder="Masukkan Password Baru" required>
+                            </div>
+                            <button type="submit">Ubah Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="admin_footer">
+            <p>&copy; 2024 <b>Automasipro</b>. All rights reserved.</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

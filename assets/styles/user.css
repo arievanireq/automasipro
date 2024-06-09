@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --pri-backg: #121212;
+    --sec-backg: #1E1E1E;
+    --text-col: #CFCFCF;
+    --pri-butt: #2CBE60;
+    --sec-butt: #DC3545;
+    --pri-butt-hov: #33691D;
+    --sec-butt-hov: #881823;
+    --sid-hov: #333;
+    --drop-hov: #444;
+}
+
+body {
+    background-color: var(--pri-backg);
+    color: var(--text-col);
+    width: 100%;
+    height: 100vh;
+}
+
+.user_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 90px 0 70px 0;
+}
+
+/* ---------- Header ---------- */
+.user_container .header {
+    width: 100%;
+    height: 70px;
+    background-color: var(--sec-backg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: fixed;
+    border-radius: 0 0 10px 10px;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user_container .header h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--pri-butt);
+}
+
+.user_container .header .nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.user_container .header .nav a {
+    text-decoration: none;
+    color: var(--text-col);
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.user_container .header .nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--pri-butt);
+    transition: width 1000ms ease;
+}
+
+.user_container .header .nav a.active::after {
+    width: 100%;
+}
+
+.user_container .header .nav a:hover::after {
+    width: 100%;
+}
+
+.user_container .header .nav button {
+    margin-left: 20px;
+    background-color: var(--pri-butt);
+    color: var(--sec-backg);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 1000ms ease-out;
+}
+
+.user_container .header .nav button i {
+    margin-right: 5px;
+}
+
+.user_container .header .nav button:hover {
+    background-color: var(--pri-butt-hov);
+    color: var(--text-col);
+}
+
+/* ---------- End Header ---------- */
+
+
+/* ---------- Content ---------- */
+.user_container #dashboard {
+    width: 100%;
+    height: 100%;
+}
+
+.user_container #beranda {
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+}
+
+.user_container #dashboard .box_content_dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.user_container #dashboard .box_content_dashboard .sidebar {
+    width: 300px;
+    height: 100%;
+    background-color: var(--sec-backg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.user_container #dashboard .box_content_dashboard .sidebar a {
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--text-col);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition: all 1000ms ease-out;
+}
+
+.user_container #dashboard .box_content_dashboard .sidebar a i {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.user_container #dashboard .box_content_dashboard .sidebar a:hover {
+    background-color: var(--sid-hov);
+    border-radius: 5px;
+}
+
+.user_container #dashboard .box_content_dashboard .content {
+    width: 100%;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section .title_content {
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--sec-backg);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section .box_profile {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section .box_profile p {
+    width: 100%;
+    height: 40px;
+    background-color: var(--sid-hov);
+    color: var(--text-col);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px 5px 0 0;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section .box_profile .nama_profile,
+.user_container #dashboard .box_content_dashboard .content .content_section .box_profile .email_profile,
+.user_container #dashboard .box_content_dashboard .content .content_section .box_profile .telepon_profile {
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    color: var(--text-col);
+    font-weight: normal;
+    border: 1px solid var(--sid-hov);
+    border-radius: 0 0 5px 5px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form input {
+    width: 100%;
+    height: 40px;
+    background-color: var(--sid-hov);
+    border: none;
+    padding: 0 20px;
+    color: var(--text-col);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form input:focus {
+    outline: none;
+    border: 1px solid var(--pri-butt);
+    box-shadow: 0 0 4px var(--pri-butt);
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form button {
+    width: 100%;
+    height: 40px;
+    background-color: var(--pri-butt);
+    color: var(--sec-backg);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    grid-column: span 2;
+    transition: all 1000ms ease-out;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form button:hover {
+    background-color: var(--pri-butt-hov);
+    color: var(--text-col);
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form input[type="password"] {
+    position: relative;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_lama,
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_baru {
+    position: relative;
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_lama input,
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_baru input {
+    width: 100%; /* Full width */
+    padding-right: 40px; /* Add padding to the right to avoid text overlap with the icon */
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_lama i,
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_baru i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--pri-butt);
+}
+
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_lama i:hover,
+.user_container #dashboard .box_content_dashboard .content .content_section form .password_baru i:hover {
+    color: var(--pri-butt-hov);
+}
+/* ---------- End Content ---------- */
+
+/* ---------- Footer ---------- */
+.user_container footer {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--sec-backg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user_container footer p {
+    font-size: 14px;
+    color: var(--text-col);
+}
+
+.user_container footer p b {
+    color: var(--pri-butt);
+}
+
+/* ---------- End Footer ---------- */
+
+/* SweetAlert Button Styles */
+.swal2-confirm, .swal2-cancel {
+    background-color: var(--pri-butt) !important; /* Menggunakan variabel CSS untuk warna */
+    color: white !important;
+    padding: 10px 20px !important; /* Menambahkan padding untuk ukuran tombol */
+    font-size: 16px !important; /* Menambahkan ukuran font untuk tombol */
+    border-radius: 5px !important; /* Menambahkan border-radius untuk tombol */
+    cursor: pointer;
+}
+
+.swal2-cancel {
+    background-color: var(--sec-butt) !important; /* Warna untuk tombol cancel */
+}

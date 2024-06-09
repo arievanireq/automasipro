@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Automasipro</title>
+    <link rel="shortcut icon" href="/assets/images/reqcode.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/styles/admin.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="/scripts/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/config/firebaseConfig.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user || user.role !== 'admin') {
+                window.location.href = '/index.html'; // Asumsi ini adalah URL untuk halaman login
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="admin_container">
+
+        <div class="admin_header">
+            <h2>Automasipro</h1>
+                <button type="button" onclick="logout()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+        </div>
+
+        <div class="admin_content">
+
+            <div class="sidebar">
+                <a href="#" class="sidebar-link" data-target="dashboard_content"><i class="fas fa-tachometer-alt"></i>
+                    Dashboard</a>
+                <a href="#" class="sidebar-link" data-target="register_content"><i class="fas fa-user-plus"></i>
+                    Register New User</a>
+                <a href="#" class="sidebar-link" data-target="user_list_content"><i class="fas fa-users"></i> User
+                    List</a>
+                <div class="dropdown">
+                    <a class="sidebar-link dropdown-toggle"><i class="fas fa-edit"></i> Artikel</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="sidebar-link" data-target="create_article_content">Buat Artikel</a>
+                        <a href="#" class="sidebar-link" data-target="list_article_content">List Artikel</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard_content" id="dashboard_content">
+                <h2 class="title_content">Dashboard</h2>
+            </div>
+
+            <div class="register_content" id="register_content" style="display:none;">
+                <h2 class="title_content">Register New User</h2>
+                <form id="registerForm">
+                    <div class="input_box">
+                        <label for="newEmail"><b>Email</b></label>
+                        <input type="email" placeholder="Enter Email" id="newEmail" required>
+                    </div>
+
+                    <div class="input_box">
+                        <label for="newPassword"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" id="newPassword" required>
+                    </div>
+
+                    <div class="input_box">
+                        <label for="newName"><b>Name</b></label>
+                        <input type="text" placeholder="Enter Name" id="newName" required>
+                    </div>
+
+                    <div class="input_box">
+                        <label for="newPhone"><b>Phone Number</b></label>
+                        <input type="tel" placeholder="Enter Phone Number" id="newPhone" required>
+                    </div>
+
+                    <div class="input_box full_width">
+                        <label for="duration"><b>Account Duration</b></label>
+                        <select id="duration" required>
+                            <option value="5m">5 Minutes</option>
+                            <option value="7d">7 Days</option>
+                            <option value="1M">1 Month</option>
+                            <option value="3M">3 Months</option>
+                            <option value="6M">6 Months</option>
+                            <option value="1Y">1 Year</option>
+                        </select>
+                    </div>
+
+                    <button class="full_width" type="button" onclick="registerUser()">Register User</button>
+                </form>
+            </div>
+
+            <div class="user_list_content" id="user_list_content" style="display:none;">
+                <h2 class="title_content">User List</h2>
+                <div class="box_action">
+                    <div class="search">
+                        <input type="text" id="searchUser" placeholder="Cari pengguna..." onkeyup="searchUsers()">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <p>Total User :<span id="totalUsers"></span></p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Nama</th>
+                            <th>Telepon</th>
+                            <th>Status</th>
+                            <th>Tanggal Expired</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userList">
+                        <!-- Daftar pengguna akan dimuat di sini -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="create_article_content" id="create_article_content" style="display:none;">
+                <h2 class="title_content">Buat Artikel</h2>
+                <form id="createArticleForm">
+                    <div class="input_box">
+                        <label for="articleTitle"><b>Judul Artikel</b></label>
+                        <input type="text" placeholder="Masukkan Judul Artikel" id="articleTitle" required>
+                    </div>
+                    <div class="input_box full_width">
+                        <label for="articleContent"><b>Konten Artikel</b></label>
+                        <textarea id="articleContent" placeholder="Tulis konten artikel di sini..." required></textarea>
+                    </div>
+                    <div class="input_box">
+                        <label for="articleVideo"><b>Link Embed Video</b></label>
+                        <input type="text" placeholder="Masukkan Link Embed Video" id="articleVideo">
+                    </div>
+                    <button class="full_width" type="button" onclick="createArticle()">Buat Artikel</button>
+                </form>
+            </div>
+
+            <div class="list_article_content" id="list_article_content" style="display:none;">
+                <h2 class="title_content">List Artikel</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th>Konten</th>
+                            <th>Video</th>
+                            <th>Penulis</th>
+                            <th>Tanggal Dibuat</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="articleList">
+                        <!-- Daftar artikel akan dimuat di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="admin_footer">
+            <p>&copy; 2024 <b>Automasipro</b>. All rights reserved.</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
